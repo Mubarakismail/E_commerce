@@ -2,7 +2,7 @@
 
 namespace Ecommerce\Controllers;
 
-class notFoundController
+class notFoundController extends controller
 {
     public function notFoundAction()
     {

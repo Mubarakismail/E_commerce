@@ -2,10 +2,10 @@
 
 namespace Ecommerce;
 
-use Ecommerce\Controllers\indexController;
+use Ecommerce\RequestCycle\kernal;
 
 require_once '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config.php';
 require_once APP_PATH . DS . 'lib' . DS . 'autoload.php';
 
-$controller = new indexController();
-$controller->dispatch();
+$kernal = new kernal();
+$kernal->dispatch();

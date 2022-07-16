@@ -2,6 +2,6 @@
 
 namespace Ecommerce\Controllers;
 
-class homeController
+class homeController extends controller
 {
 }

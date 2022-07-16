@@ -1,9 +1,11 @@
 <?php
 
-namespace Ecommerce\Controllers;
+namespace Ecommerce\RequestCycle;
 
-class indexController
+class kernal
 {
+    const notFoundControllerPath = 'Ecommerce\Controllers\notFoundController';
+    const notFoundActionPath = 'notFoundAction';
     private $_controller = 'home';
     private $_action = 'default';
     private $_params = array();
@@ -31,13 +33,14 @@ class indexController
     {
         $controllerName = 'Ecommerce\Controllers' . DS . $this->_controller . 'Controller';
         $action = $this->_action;
-        if (!class_exists($controllerName)) {
-            $controllerName = 'Ecommerce\Controllers\notFoundController';
+        if (!class_exists($controllerName) || !method_exists($controllerName, $this->_action)) {
+            $controllerName = self::notFoundControllerPath;
+            $this->_action = $action = self::notFoundActionPath;
         }
         $controller = new $controllerName();
-        if (!method_exists($controller, $this->_action)) {
-            $action = 'notFoundAction';
-        }
+        $controller->setController($this->_controller);
+        $controller->setAction($this->_action);
+        $controller->setParams($this->_params);
         $controller->$action();
     }
 }
